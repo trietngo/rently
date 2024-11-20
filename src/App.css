@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.leaflet-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: block;
+}
+
+.sidebar-overlay {
+  position: absolute;
+  
+  z-index: 999;
+}

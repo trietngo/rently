@@ -1,5 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import Map from './components/Map';
+import SideBar from './components/controls/SideBar';
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
 
 function App() {
   return (
@@ -21,7 +27,7 @@ function App() {
     // </div>
 
     <>
-      Rently Hello World
+      <Map></Map>
     </>
   );
 }
