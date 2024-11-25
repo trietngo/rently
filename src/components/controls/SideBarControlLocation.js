@@ -9,10 +9,17 @@ import { useMapEvent, useMapEvents } from 'react-leaflet';
 import { map } from 'leaflet';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { StateContext } from './SideBar';
+import axios from 'axios';
 
 export default function SideBarControlLocation() {
 
     const state = useContext(StateContext);
+
+    // Get geo lat to pass into API
+    const geoLat = state.parentLat
+    const geoLng = state.parentLng
+
+    // Get geoPos
 
     const MapEvents = () => {
         useMapEvents({
@@ -26,6 +33,10 @@ export default function SideBarControlLocation() {
         return false;
     }
 
+    const reverseGeocoderHandler = (e) => {
+        
+    }
+
     const UpdateTextFields = () => {
         
         const center = {
@@ -34,6 +45,28 @@ export default function SideBarControlLocation() {
         }
 
         const [position, setPosition] = useState(center)
+
+        const [geoPos, setGeoPos] = useState('');
+        
+
+        const [geoState, setGeoState] = useState('')
+        const [geoCity, setGeoCity] = useState('')
+
+        useEffect(() => {
+
+            axios.get(`https://nominatim.openstreetmap.org/reverse?lat=${state.parentLat}&lon=${state.parentLng}&format=jsonv2`)
+                .then(response => {
+                    setGeoPos(response.data)
+                    
+                })
+
+            console.log("geoPos")
+            // .catch(err => {
+            //     console.error(err)
+            // })
+            
+        }, [geoPos])
+        
         const map = useMapEvent('click', (e) => {
             // console.log("click")
             setPosition(e.latlng)
@@ -41,6 +74,21 @@ export default function SideBarControlLocation() {
             // Update the master state
             state.parentLat = position.lat.toFixed(4)
             state.parentLng = position.lng.toFixed(4)
+
+            const { address } = geoPos;
+
+            if (address) {
+
+                console.log(address)
+    
+                const { city, town, county, state } = address;
+    
+                setGeoState(state);
+                setGeoCity(city ? city : town);
+    
+                console.log(geoCity);
+                console.log(geoState);
+            }
         })
 
         return (
@@ -66,6 +114,19 @@ export default function SideBarControlLocation() {
                     slotProps={{
                         input: {
                           readOnly: true,
+                        },
+                    }}
+                    size='small'
+                />
+
+                <TextField
+                    id="location_state"
+                    label="Nearest Settlement"
+                    defaultValue={'City, State'}
+                    value={ geoCity || geoState ? `${geoCity}, ${geoState}` : ''}
+                    slotProps={{
+                        input: {
+                            readOnly: true,
                         },
                     }}
                     size='small'
@@ -113,17 +174,7 @@ export default function SideBarControlLocation() {
                             value={23}
                         /> */}
 
-                        <TextField
-                            id="location_state"
-                            label="Nearest Settlement"
-                            defaultValue="Castro Valley, CA"
-                            slotProps={{
-                                input: {
-                                  readOnly: true,
-                                },
-                            }}
-                            size='small'
-                        />
+                        
 
                         
                     </div>
