@@ -6,9 +6,7 @@ import Box from "@mui/material/Box"
 import { styled } from '@mui/material/styles'
 import SideBarControls from "./SideBarControls"
 import SideBarResult from "./SideBarResult"
-import { useState, useContext, createContext } from "react"
-
-export const StateContext = createContext()
+import { StateContext } from "../Map"
 
 export default function SideBar() {
 
@@ -25,74 +23,6 @@ export default function SideBar() {
         }),
     }));
 
-    const [masterState, setMasterState] = useState({
-
-        // Sizes
-        bedSize: 0.0,
-        bathSize: 0.0,
-        areaSizeSqft: 0,
-
-        // Location
-        parentLat: 0,
-        parentLng: 0,
-
-        // Property Type
-        apartmentType: false,
-        commercialType: false,
-        condoType: false,
-        homeType: false,
-        housingType: true, // always true
-        otherType: false,
-
-        rentType: true, // always true
-        retailType: false,
-        shortTermType: false,
-        
-        // Amenities
-        acOffered: false,
-        alarmOffered: false,
-        basketballOffered: false,
-        cableSatelliteOffered: false,
-        clubhouseOffered: false,
-        dishwasherOffered: false,
-        doormanOffered: false,
-        elevatorOffered: false,
-        fireplaceOffered: false,
-        garbageDisposalOffered: false,
-        gatedOffered: false,
-        golfOffered: false,
-        gymOffered: false,
-        hotTubOffered: false,
-        internetOffered: false,
-        parkingOffered: false,
-        patioDeckOffered: false,
-        playgroundOffered: false,
-        poolOffered: false,
-        refrigeratorOffered: false,
-        storageOffered: false,
-        tvOffered: false,
-        tennisOffered: false,
-        viewOffered: false,
-        washerDryerOffered: false,
-        woodfloorOffered: false,
-        noAmenitiesOffered: true,
-
-        // Pets
-        catAllowed: false,
-        dogAllowed: false,
-        noPetsAllowed: true,
-    })
-
-    const {
-        parentLat,
-        parentLng,
-
-
-        catAllowed,
-        dogAllowed,
-        noPetsAllowed,
-    } = masterState
-
     return (
         <div className="sidebar-overlay" style={{width: "100%"}}>
             
@@ -104,11 +34,8 @@ export default function SideBar() {
 
                     {/* Main Side Bar containing controls */}
                     <Item>
-
-                        <StateContext.Provider value={masterState}>
-                            <SideBarResult/>
-                            <SideBarControls/>
-                        </StateContext.Provider>
+                        <SideBarResult/>
+                        <SideBarControls/>
                     </Item>
                     
                 </Grid>

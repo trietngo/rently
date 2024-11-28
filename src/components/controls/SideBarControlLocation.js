@@ -8,7 +8,7 @@ import { Margin } from '@mui/icons-material';
 import { useMapEvent, useMapEvents } from 'react-leaflet';
 import { map } from 'leaflet';
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { StateContext } from './SideBar';
+import { StateContext } from '../Map';
 import axios from 'axios';
 
 export default function SideBarControlLocation() {
@@ -20,22 +20,6 @@ export default function SideBarControlLocation() {
     const geoLng = state.parentLng
 
     // Get geoPos
-
-    const MapEvents = () => {
-        useMapEvents({
-          click(e) {
-
-            console.log(e.latlng.lat);
-            console.log(e.latlng.lng);
-          },
-        });
-    
-        return false;
-    }
-
-    const reverseGeocoderHandler = (e) => {
-        
-    }
 
     const UpdateTextFields = () => {
         
@@ -64,32 +48,47 @@ export default function SideBarControlLocation() {
             // .catch(err => {
             //     console.error(err)
             // })
-            
-        }, [geoPos])
-        
-        const map = useMapEvent('click', (e) => {
-            // console.log("click")
-            setPosition(e.latlng)
-
-            // Update the master state
-            state.parentLat = position.lat.toFixed(4)
-            state.parentLng = position.lng.toFixed(4)
 
             const { address } = geoPos;
 
             if (address) {
 
                 console.log(address)
-    
+
                 const { city, town, county, state } = address;
-    
+
                 setGeoState(state);
                 setGeoCity(city ? city : town);
-    
+
                 console.log(geoCity);
-                console.log(geoState);
+                console.log(geoState); 
             }
-        })
+            
+        }, [geoPos])
+        
+        // const map = useMapEvent('click', (e) => {
+        //     // console.log("click")
+        //     setPosition(e.latlng)
+
+        //     // Update the master state
+        //     state.parentLat = position.lat.toFixed(4)
+        //     state.parentLng = position.lng.toFixed(4)
+
+        //     const { address } = geoPos;
+
+        //     if (address) {
+
+        //         console.log(address)
+    
+        //         const { city, town, county, state } = address;
+    
+        //         setGeoState(state);
+        //         setGeoCity(city ? city : town);
+    
+        //         console.log(geoCity);
+        //         console.log(geoState);
+        //     }
+        // })
 
         return (
             <>
@@ -97,7 +96,7 @@ export default function SideBarControlLocation() {
                     required
                     id="latitude_value"
                     label="Latitude"
-                    value={position.lat.toFixed(4)}
+                    value={state.parentLat}
                     slotProps={{
                         input: {
                           readOnly: true,
@@ -110,7 +109,7 @@ export default function SideBarControlLocation() {
                     required
                     id="longitude_value"
                     label="Longitude"
-                    value={position.lng.toFixed(4)}
+                    value={state.parentLng}
                     slotProps={{
                         input: {
                           readOnly: true,

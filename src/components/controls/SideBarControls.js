@@ -11,7 +11,7 @@ export default function SideBarControls() {
         <Box 
             sx={{
                 overflowY: "auto",
-                maxHeight: "70vh"
+                maxHeight: "65vh"
             }}
         >
             <div style={{marginBottom: "1rem"}}>

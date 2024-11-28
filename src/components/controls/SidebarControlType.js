@@ -7,7 +7,7 @@ import { FormControl, FormControlLabel, FormLabel } from '@mui/material';
 import { FormGroup } from '@mui/material';
 import { useContext, useState } from 'react';
 import { Checkbox } from '@mui/material';
-import { StateContext } from './SideBar';
+import { StateContext } from '../Map';
 
 export default function SideBarControlType() {
 

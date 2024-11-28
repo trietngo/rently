@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 import { useContext, useState } from 'react';
 import { TextField } from '@mui/material';
-import { StateContext } from './SideBar';
+import { StateContext } from '../Map';
 
 export default function SideBarControlSizes() {
 
