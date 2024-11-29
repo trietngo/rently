@@ -17,6 +17,7 @@ export default function SideBar() {
         padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        marginBottom: '1rem',
         
         ...theme.applyStyles('dark', {
           backgroundColor: '#1A2027',
@@ -29,8 +30,12 @@ export default function SideBar() {
             <Box p={2}>
                 <Item>
                     <SideBarResult/>
-                    <SideBarControls/>
                 </Item>
+                
+                <SideBarControls/>
+
+                
+                
             </Box>
             {/* Main Side Bar containing controls */}
             

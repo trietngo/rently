@@ -151,7 +151,7 @@ export default function SideBarResult() {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <Button color="secondary" variant="contained" onClick={() => calculateRentHandlerWorking()}>Estimate Rent Price</Button>
 
-                <Button sx={{ textDecoration: 'none' }} color="success" variant="outlined" href="https://github.com/trietngo/rently">See Repo on GitHub {' '} <GitHub/> </Button>
+                <Button sx={{ textDecoration: 'none' }} color="success" variant="outlined" href="https://github.com/trietngo/rently" endIcon={<GitHub/>}>See GitHub Repo</Button>
             </Box>
             
         </div>
