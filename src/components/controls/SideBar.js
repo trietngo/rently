@@ -24,23 +24,15 @@ export default function SideBar() {
     }));
 
     return (
-        <div className="sidebar-overlay" style={{width: "100%"}}>
-            
-            <Grid container spacing={2} margin={2}>
-                <Grid size={8}>
-                </Grid>
+        <div style={{maxWidth: "30vw"}}>
 
-                <Grid size={4}>
-
-                    {/* Main Side Bar containing controls */}
-                    <Item>
-                        <SideBarResult/>
-                        <SideBarControls/>
-                    </Item>
-                    
-                </Grid>
-
-            </Grid>
+            <Box p={2}>
+                <Item>
+                    <SideBarResult/>
+                    <SideBarControls/>
+                </Item>
+            </Box>
+            {/* Main Side Bar containing controls */}
             
             
         </div>

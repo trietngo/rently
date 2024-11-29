@@ -85,8 +85,8 @@ export default function Map() {
     const map = useMapEvent('click', (e) => {
         setPosition(e.latlng)
 
-        masterState.parentLat = position.lat.toFixed(4)
-        masterState.parentLng = position.lng.toFixed(4)
+        masterState.parentLat = position.lat
+        masterState.parentLng = position.lng
     })
 
     return (
@@ -103,40 +103,43 @@ export default function Map() {
   
   const displayMap = useMemo(
     () => (
-      <>
-        <StateContext.Provider value={masterState}>
 
-          
+      <StateContext.Provider value={masterState}>
+      <div className="map-container">
 
-          <MapContainer
-          center={[37.706, -122.08]}
-          zoom={9}
-          minZoom={5}
-          scrollWheelZoom={true}
-          maxBounds={[[90, -200], [15, -55]]}
-          maxBoundsViscosity={1}
-          >
-
+          <div className="sidebar-overlay">
             <SideBar></SideBar>
+          </div>
 
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+          <div className="leaflet-container">
+            <MapContainer
+            center={[37.706, -122.08]}
+            zoom={9}
+            minZoom={5}
+            scrollWheelZoom={true}
+            maxBounds={[[90, -200], [15, -55]]}
+            maxBoundsViscosity={1}
+            >
 
-            <LayersControl position="bottomright">
 
-              <LayersControl.Overlay checked="true" name="Marker with popup">
-                <UpdateMarker/>
-              </LayersControl.Overlay>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
 
-            </LayersControl>
-            
-          </MapContainer>
+              <LayersControl position="bottomright">
 
-        </StateContext.Provider>
-        
-      </>
+                <LayersControl.Overlay checked="true" name="Marker with popup">
+                  <UpdateMarker/>
+                </LayersControl.Overlay>
+
+              </LayersControl>
+              
+            </MapContainer>
+          </div>
+
+      </div>
+      </StateContext.Provider>
       
     ),
     [],

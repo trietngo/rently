@@ -96,7 +96,7 @@ export default function SideBarControlLocation() {
                     required
                     id="latitude_value"
                     label="Latitude"
-                    value={state.parentLat}
+                    value={state.parentLat.toFixed(4)}
                     slotProps={{
                         input: {
                           readOnly: true,
@@ -109,7 +109,7 @@ export default function SideBarControlLocation() {
                     required
                     id="longitude_value"
                     label="Longitude"
-                    value={state.parentLng}
+                    value={state.parentLng.toFixed(4)}
                     slotProps={{
                         input: {
                           readOnly: true,
