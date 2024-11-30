@@ -2,7 +2,7 @@ import { Button, Box } from "@mui/material"
 import { useContext } from "react"
 import { StateContext } from "../Map"
 import { useState } from "react"
-import { GitHub } from "@mui/icons-material"
+import { GitHub, NoteAlt } from "@mui/icons-material"
 
 import * as tf from '@tensorflow/tfjs'
 // import * as tfn from '@tensorflow/tfjs-node'
@@ -152,6 +152,8 @@ export default function SideBarResult() {
                 <Button color="secondary" variant="contained" onClick={() => calculateRentHandlerWorking()}>Estimate Rent Price</Button>
 
                 <Button sx={{ textDecoration: 'none' }} color="success" variant="outlined" href="https://github.com/trietngo/rently" endIcon={<GitHub/>}>See GitHub Repo</Button>
+
+                <Button sx={{ textDecoration: 'none' }} color="primary" variant="outlined" href="https://github.com/trietngo/tensorflow-training-rent-prediction" endIcon={<NoteAlt/>}>See TensorFlow Notebook</Button>
             </Box>
             
         </div>
