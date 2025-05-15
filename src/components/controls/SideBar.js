@@ -32,13 +32,11 @@ export default function SideBar() {
                     <SideBarResult/>
                 </Item>
                 
+                {/* Main Side Bar containing controls */}
                 <SideBarControls/>
+                
 
-                
-                
-            </Box>
-            {/* Main Side Bar containing controls */}
-            
+            </Box>               
             
         </div>
     )

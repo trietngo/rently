@@ -141,12 +141,11 @@ export default function SideBarResult() {
     }
 
     return (
-        <div style={{margin: "2rem"}}>
+        <div style={{margin: "1rem"}}>
 
-            <h1>rently.</h1>
+            <img style={{maxHeight: "50px"}} className="w" src={process.env.PUBLIC_URL + 'assets/icons/rently-logo.svg'} alt="rently logo" />
 
-            <h1>{'$' + price}</h1>
-            <p>per month per person</p>
+            <h1>{'$' + price + '/mo'}</h1>
             
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <Button color="secondary" variant="contained" onClick={() => calculateRentHandlerWorking()}>Estimate Rent Price</Button>

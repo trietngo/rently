@@ -103,6 +103,7 @@ export default function SideBarControlLocation() {
                         },
                     }}
                     size='small'
+                    style={{"maxWidth": "100%"}}
                 />
             
                 <TextField
@@ -116,6 +117,7 @@ export default function SideBarControlLocation() {
                         },
                     }}
                     size='small'
+                    style={{"maxWidth": "100%"}}
                 />
 
                 <TextField
@@ -129,6 +131,7 @@ export default function SideBarControlLocation() {
                         },
                     }}
                     size='small'
+                    style={{"maxWidth": "100%"}}
                 />
             </>
             
@@ -155,7 +158,6 @@ export default function SideBarControlLocation() {
                     noValidate
                     autoComplete="off"
                 >
-                    <div>
 
                         <UpdateTextFields></UpdateTextFields>
                         
@@ -176,7 +178,6 @@ export default function SideBarControlLocation() {
                         
 
                         
-                    </div>
 
                 </Box>
 
