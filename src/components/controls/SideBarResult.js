@@ -5,6 +5,7 @@ import { useState } from "react"
 import { GitHub, NoteAlt } from "@mui/icons-material"
 
 import * as tf from '@tensorflow/tfjs'
+import axios from "axios"
 // import * as tfn from '@tensorflow/tfjs-node'
 
 
@@ -21,6 +22,20 @@ export default function SideBarResult() {
         setPrice(Math.floor(Math.random() * (6000 - 700) ) + 700)
 
         console.log(price)
+    }
+
+    const [res, setRes] = useState('')
+
+    const sendToServer = async () => {
+
+        await axios.post(`https://rently-server-0pjp.onrender.com/state`, state)
+            .then(response => {
+            setRes(response.data);
+          })
+            .catch(error => {
+            console.log(error);
+          });
+
     }
 
     // Import TensorFlow model
@@ -148,6 +163,9 @@ export default function SideBarResult() {
             <h1>{'$' + price + '/mo'}</h1>
             
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+
+                <Button color="primary" variant="contained" onClick={() => sendToServer()}>{res ? res : 'Render Server Test'}</Button>
+
                 <Button color="secondary" variant="contained" onClick={() => calculateRentHandlerWorking()}>Estimate Rent Price</Button>
 
                 <Button sx={{ textDecoration: 'none' }} color="success" variant="outlined" href="https://github.com/trietngo/rently" endIcon={<GitHub/>}>See GitHub Repo</Button>

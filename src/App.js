@@ -7,6 +7,8 @@ import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 import { createTheme, CssBaseline } from '@mui/material';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const theme = createTheme({
   typography: {
@@ -16,6 +18,16 @@ const theme = createTheme({
 })
 
 function App() {
+
+  // const [data, setData] = useState(null)
+
+  // useEffect(() => {
+  //   axios.get(`/api`)
+  //               .then(response => {
+  //                   setData(response.data)
+  //               })
+  // }, [])
+
   return (
     // <div className="App">
     //   <header className="App-header">
@@ -35,6 +47,7 @@ function App() {
     // </div>
 
     <>
+      {/* <p>{!data ? "Loading..." : data}</p> */}
       <Map ></Map>
     </>
   );
